@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in backlog-v2-cli.gemspec
+# Specify your gem's dependencies in backlog-api-cli.gemspec
 gemspec

@@ -1,6 +1,6 @@
 require 'faraday'
 
-module BacklogV2Client
+module BacklogApiClient
   class Client
     API_PATH = '/api/v2'
 
@@ -20,7 +20,7 @@ module BacklogV2Client
     end
 
     def space
-      BacklogV2Client::Client::Space.new(self)
+      BacklogApiClient::Client::Space.new(self)
     end
   end
 end

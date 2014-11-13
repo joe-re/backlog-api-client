@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'backlog-v2-client/version'
+require 'backlog-api-client/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'backlog-v2-client'
-  spec.version       = BacklogV2Client::VERSION
+  spec.name          = 'backlog-api-client'
+  spec.version       = BacklogApiClient::VERSION
   spec.authors       = ['joe-re']
   spec.email         = ['joe.tialtngo@gmail.com']
   spec.summary       = ''
-  spec.description   = 'This is a simple and easy-to-use Backlog Api V2 client.'
+  spec.description   = 'This is a simple and easy-to-use Backlog Restful Api client.'
   spec.homepage      = ''
   spec.license       = 'MIT'
 

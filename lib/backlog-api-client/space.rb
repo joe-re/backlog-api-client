@@ -1,4 +1,4 @@
-module BacklogV2Client
+module BacklogApiClient
   class Client
     class Space
       RESOURCE_NAME = 'space'
