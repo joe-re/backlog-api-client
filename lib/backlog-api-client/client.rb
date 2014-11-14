@@ -13,7 +13,8 @@ module BacklogApiClient
       @http_cli.get("#{resource_path}?apiKey=#{@api_key}")
     end
 
-    def post
+    def post(resource_path, request = '')
+      @http_cli.post "#{resource_path}?apiKey=#{@api_key}", request
     end
 
     def delete
@@ -21,6 +22,10 @@ module BacklogApiClient
 
     def space
       BacklogApiClient::Client::Space.new(self)
+    end
+
+    def issues
+      BacklogApiClient::Client::Issues.new(self)
     end
   end
 end
