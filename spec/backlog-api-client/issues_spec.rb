@@ -3,10 +3,10 @@ require 'spec_helper'
 describe BacklogApiClient::Client::Issues do
   let(:client) { double('client') }
 
-  describe '#get_information' do
+  describe '#information' do
     let(:test_issue_id) { 'TEST-ISSUE-ID' }
     before { expect(client).to receive(:get).with("issues/#{test_issue_id}").and_return('ok') }
-    subject { described_class.new(client).get_information(test_issue_id) }
+    subject { described_class.new(client).information(test_issue_id) }
     it { should eq 'ok' }
   end
 
