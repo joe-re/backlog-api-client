@@ -10,4 +10,13 @@ describe BacklogApiClient::Client::Issues do
     subject { described_class.new(@client).get_information(test_issue_id) }
     it { should eq 'ok' }
   end
+
+  describe '#create' do
+    before do
+      @client = double('client')
+      expect(@client).to receive(:post).with('issues', 'request').and_return('ok')
+    end
+    subject { described_class.new(@client).create('request') }
+    it { should eq 'ok' }
+  end
 end
