@@ -7,7 +7,7 @@ module BacklogApiClient
         @client = client
       end
 
-      def information
+      def get_information
         @client.get(RESOURCE_NAME)
       end
     end
