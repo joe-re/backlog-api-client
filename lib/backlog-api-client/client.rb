@@ -10,11 +10,15 @@ module BacklogApiClient
     end
 
     def get(resource_path)
-      @http_cli.get("#{resource_path}?apiKey=#{@api_key}")
+      @http_cli.get "#{resource_path}?apiKey=#{@api_key}"
     end
 
     def post(resource_path, request = '')
-      @http_cli.post "#{resource_path}?apiKey=#{@api_key}", request
+      @http_cli.post do |req|
+        req.url "#{resource_path}?apiKey=#{@api_key}"
+        req.headers['Content-Type'] = 'application/json'
+        req.body = request
+      end
     end
 
     def delete
