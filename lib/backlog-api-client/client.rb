@@ -5,19 +5,20 @@ module BacklogApiClient
     API_PATH = '/api/v2'
 
     def initialize(space_name, api_key)
-      @api_key = api_key
+      @api_key = { apiKey: api_key }
       @http_cli = Faraday.new(url: "https://#{space_name}#{API_PATH}")
     end
 
-    def get(resource_path)
-      @http_cli.get "#{resource_path}?apiKey=#{@api_key}"
+    def get(resource_path, params = {})
+      params.merge!(@api_key)
+      @http_cli.get "#{resource_path}#{to_request_params(params)}"
     end
 
-    def post(resource_path, request = '')
+    def post(resource_path, request_body = {})
       @http_cli.post do |req|
-        req.url "#{resource_path}?apiKey=#{@api_key}"
+        req.url "#{resource_path}#{to_request_params(@api_key)}"
         req.headers['Content-Type'] = 'application/json'
-        req.body = request
+        req.body = request_body.to_json
       end
     end
 
@@ -30,6 +31,15 @@ module BacklogApiClient
 
     def issues
       BacklogApiClient::Client::Issues.new(self)
+    end
+
+    private
+
+    def to_request_params(hash)
+      hash.each_with_object('') do |(k, v), request_params|
+        request_params << (request_params.empty? ? '?' : '&')
+        request_params << "#{k}=#{v}"
+      end
     end
   end
 end
