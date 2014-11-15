@@ -7,6 +7,10 @@ module BacklogApiClient
         @client = client
       end
 
+      def list(params)
+        @client.get(RESOURCE_NAME, params)
+      end
+
       def information(isuue_id_or_key)
         @client.get("#{RESOURCE_NAME}/#{isuue_id_or_key}")
       end

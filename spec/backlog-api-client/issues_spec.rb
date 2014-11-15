@@ -3,6 +3,13 @@ require 'spec_helper'
 describe BacklogApiClient::Client::Issues do
   let(:client) { double('client') }
 
+  describe '#list' do
+    let(:params) { { projectId: 'test-project' } }
+    before { expect(client).to receive(:get).with('issues', params).and_return('ok') }
+    subject { described_class.new(client).list(params) }
+    it { should eq 'ok' }
+  end
+
   describe '#information' do
     let(:test_issue_id) { 'TEST-ISSUE-ID' }
     before { expect(client).to receive(:get).with("issues/#{test_issue_id}").and_return('ok') }
