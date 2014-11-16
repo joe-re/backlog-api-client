@@ -34,6 +34,10 @@ module BacklogApiClient
       def activities(user_id, request = {})
         @client.get("#{RESOURCE_NAME}/#{user_id}/activities", request)
       end
+
+      def stars(user_id, request = {})
+        @client.get("#{RESOURCE_NAME}/#{user_id}/stars", request)
+      end
     end
   end
 end
