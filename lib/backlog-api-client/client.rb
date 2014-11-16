@@ -30,6 +30,14 @@ module BacklogApiClient
       end
     end
 
+    def put(resource_path, request_body = {})
+      @http_cli.put do |req|
+        req.url "#{resource_path}#{to_request_params(@api_key)}"
+        req.headers['Content-Type'] = 'application/json'
+        req.body = request_body.to_json
+      end
+    end
+
     def delete(resource_path)
       @http_cli.delete "#{resource_path}#{to_request_params(@api_key)}"
     end
