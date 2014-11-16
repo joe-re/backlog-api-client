@@ -34,4 +34,10 @@ describe BacklogApiClient::Client::Space do
     subject { described_class.new(client).update_notification(content) }
     it { should eq 'ok' }
   end
+
+  describe '#disk_usage' do
+    before { expect(client).to receive(:get).with('space/diskUsage').and_return('ok') }
+    subject { described_class.new(client).disk_usage }
+    it { should eq 'ok' }
+  end
 end

@@ -26,6 +26,11 @@ module BacklogApiClient
       def update_notification(content)
         @client.put("#{RESOURCE_NAME}/notification", content)
       end
+
+      def disk_usage
+        @client.get("#{RESOURCE_NAME}/diskUsage")
+      end
+
     end
   end
 end
