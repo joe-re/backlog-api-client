@@ -31,4 +31,11 @@ describe BacklogApiClient::Client::Issues do
     subject { described_class.new(client).update(test_issue_id, request) }
     it { should eq 'ok' }
   end
+
+  describe '#delete' do
+    let(:test_issue_id) { 'TEST-ISSUE-ID' }
+    before { expect(client).to receive(:delete).with("issues/#{test_issue_id}").and_return('ok') }
+    subject { described_class.new(client).delete(test_issue_id) }
+    it { should eq 'ok' }
+  end
 end

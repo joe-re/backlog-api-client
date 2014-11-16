@@ -22,6 +22,10 @@ module BacklogApiClient
       def update(issue_id_or_key, request)
         @client.patch("#{RESOURCE_NAME}/#{issue_id_or_key}", request)
       end
+
+      def delete(isuue_id_or_key)
+        @client.delete("#{RESOURCE_NAME}/#{isuue_id_or_key}")
+      end
     end
   end
 end
