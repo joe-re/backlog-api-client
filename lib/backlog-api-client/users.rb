@@ -14,6 +14,10 @@ module BacklogApiClient
       def information(user_id)
         @client.get("#{RESOURCE_NAME}/#{user_id}")
       end
+
+      def create(request)
+        @client.post(RESOURCE_NAME, request)
+      end
     end
   end
 end

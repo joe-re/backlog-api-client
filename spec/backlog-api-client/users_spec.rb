@@ -15,4 +15,11 @@ describe BacklogApiClient::Client::Users do
     subject { described_class.new(client).information(test_user_id) }
     it { should eq 'ok' }
   end
+
+  describe '#create' do
+    let(:request) { 'request' }
+    before { expect(client).to receive(:post).with('users', request).and_return('ok') }
+    subject { described_class.new(client).create(request) }
+    it { should eq 'ok' }
+  end
 end
