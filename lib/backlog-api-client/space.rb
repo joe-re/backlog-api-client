@@ -14,6 +14,10 @@ module BacklogApiClient
       def activities(request = {})
         @client.get("#{RESOURCE_NAME}/activities", request)
       end
+
+      def image
+        @client.get("#{RESOURCE_NAME}/image")
+      end
     end
   end
 end

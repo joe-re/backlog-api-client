@@ -15,4 +15,10 @@ describe BacklogApiClient::Client::Space do
     subject { described_class.new(client).activities(params) }
     it { should eq 'ok' }
   end
+
+  describe '#image' do
+    before { expect(client).to receive(:get).with('space/image').and_return('ok') }
+    subject { described_class.new(client).image }
+    it { should eq 'ok' }
+  end
 end
