@@ -29,4 +29,10 @@ describe BacklogApiClient::Client::Users do
     subject { described_class.new(client).delete(test_user_id) }
     it { should eq 'ok' }
   end
+
+  describe '#myself' do
+    before { expect(client).to receive(:get).with('users/myself').and_return('ok') }
+    subject { described_class.new(client).myself }
+    it { should eq 'ok' }
+  end
 end

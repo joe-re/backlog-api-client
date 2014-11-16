@@ -22,6 +22,10 @@ module BacklogApiClient
       def delete(user_id)
         @client.delete("#{RESOURCE_NAME}/#{user_id}")
       end
+
+      def myself
+        @client.get("#{RESOURCE_NAME}/myself")
+      end
     end
   end
 end
