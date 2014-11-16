@@ -22,6 +22,13 @@ describe BacklogApiClient::Client do
     # ToDo: write test
   end
 
+  describe '#delete' do
+    let(:resource_path) { 'test/resource' }
+    before { expect(http_cli).to receive(:delete).with("#{resource_path}?apiKey=#{api_key}").and_return('ok') }
+    subject { described_class.new(space_name, api_key).delete(resource_path) }
+    it { should eq 'ok' }
+  end
+
   def q(hash)
     hash.each_with_object([]) { |(k, v), ary| ary << "#{k}=#{v}" }.join('&')
   end

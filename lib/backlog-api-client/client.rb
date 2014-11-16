@@ -30,7 +30,8 @@ module BacklogApiClient
       end
     end
 
-    def delete
+    def delete(resource_path)
+      @http_cli.delete "#{resource_path}#{to_request_params(@api_key)}"
     end
 
     def space
