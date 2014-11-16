@@ -31,6 +31,9 @@ module BacklogApiClient
         @client.get("#{RESOURCE_NAME}/diskUsage")
       end
 
+      def attachment(file)
+        @client.file_upload("#{RESOURCE_NAME}/attachment", file)
+      end
     end
   end
 end

@@ -40,4 +40,11 @@ describe BacklogApiClient::Client::Space do
     subject { described_class.new(client).disk_usage }
     it { should eq 'ok' }
   end
+
+  describe '#attachment' do
+    let(:file) { 'test_file' }
+    before { expect(client).to receive(:file_upload).with('space/attachment', file).and_return('ok') }
+    subject { described_class.new(client).attachment(file) }
+    it { should eq 'ok' }
+  end
 end
