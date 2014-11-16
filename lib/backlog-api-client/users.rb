@@ -26,6 +26,10 @@ module BacklogApiClient
       def myself
         @client.get("#{RESOURCE_NAME}/myself")
       end
+
+      def icon(user_id)
+        @client.get("#{RESOURCE_NAME}/#{user_id}/icon")
+      end
     end
   end
 end
