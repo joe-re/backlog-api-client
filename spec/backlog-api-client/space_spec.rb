@@ -21,4 +21,17 @@ describe BacklogApiClient::Client::Space do
     subject { described_class.new(client).image }
     it { should eq 'ok' }
   end
+
+  describe '#notification' do
+    before { expect(client).to receive(:get).with('space/notification').and_return('ok') }
+    subject { described_class.new(client).notification }
+    it { should eq 'ok' }
+  end
+
+  describe '#update_notification' do
+    let(:content) { 'content' }
+    before { expect(client).to receive(:put).with('space/notification', content).and_return('ok') }
+    subject { described_class.new(client).update_notification(content) }
+    it { should eq 'ok' }
+  end
 end
