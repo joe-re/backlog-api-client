@@ -58,4 +58,12 @@ describe BacklogApiClient::Client::Users do
     subject { described_class.new(client).stars(test_user_id, params) }
     it { should eq 'ok' }
   end
+
+  describe '#stars_count' do
+    let(:test_user_id) { 'TEST-USER-ID' }
+    let(:params) { { order: 'ace' } }
+    before { expect(client).to receive(:get).with("users/#{test_user_id}/stars/count", params).and_return('ok') }
+    subject { described_class.new(client).stars_count(test_user_id, params) }
+    it { should eq 'ok' }
+  end
 end

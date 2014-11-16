@@ -38,6 +38,11 @@ module BacklogApiClient
       def stars(user_id, request = {})
         @client.get("#{RESOURCE_NAME}/#{user_id}/stars", request)
       end
+
+      def stars_count(user_id, request = {})
+        @client.get("#{RESOURCE_NAME}/#{user_id}/stars/count", request)
+      end
+
     end
   end
 end
