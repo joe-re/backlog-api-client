@@ -5,6 +5,7 @@ module BacklogApiClient
     API_PATH = '/api/v2'
 
     def initialize(space_name, api_key)
+      @space_name = space_name
       @api_key = { apiKey: api_key }
       @http_cli = Faraday.new(url: "https://#{space_name}#{API_PATH}")
     end
@@ -38,6 +39,12 @@ module BacklogApiClient
       end
     end
 
+    def file_upload(resource_path, file)
+      @file_upload_cli ||= file_upload_cli
+      payload = { file: Faraday::UploadIO.new(file, 'application/octet-stream') }
+      @file_upload_cli.post "#{resource_path}#{to_request_params(@api_key)}", payload
+    end
+
     def delete(resource_path)
       @http_cli.delete "#{resource_path}#{to_request_params(@api_key)}"
     end
@@ -60,6 +67,14 @@ module BacklogApiClient
       hash.each_with_object('') do |(k, v), request_params|
         request_params << (request_params.empty? ? '?' : '&')
         request_params << "#{k}=#{v}"
+      end
+    end
+
+    def file_upload_cli
+      Faraday.new("https://#{@space_name}#{API_PATH}") do |f|
+        f.request :multipart
+        f.request :url_encoded
+        f.adapter :net_http # This is what ended up making it work
       end
     end
   end
