@@ -42,6 +42,10 @@ module BacklogApiClient
       BacklogApiClient::Client::Issues.new(self)
     end
 
+    def users
+      BacklogApiClient::Client::Users.new(self)
+    end
+
     private
 
     def to_request_params(hash)
