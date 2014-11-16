@@ -4,8 +4,8 @@ describe BacklogApiClient::Client::Space do
   let(:client) { double('client') }
 
   describe '#information' do
-    before { expect(@client).to receive(:get).with('space').and_return('ok') }
-    subject { described_class.new(@client).information }
+    before { expect(client).to receive(:get).with('space').and_return('ok') }
+    subject { described_class.new(client).information }
     it { should eq 'ok' }
   end
 
