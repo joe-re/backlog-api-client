@@ -30,6 +30,10 @@ module BacklogApiClient
       def icon(user_id)
         @client.get("#{RESOURCE_NAME}/#{user_id}/icon")
       end
+
+      def activities(user_id, request = {})
+        @client.get("#{RESOURCE_NAME}/#{user_id}/activities", request)
+      end
     end
   end
 end

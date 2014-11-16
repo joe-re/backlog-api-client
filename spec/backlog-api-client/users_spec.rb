@@ -42,4 +42,12 @@ describe BacklogApiClient::Client::Users do
     subject { described_class.new(client).icon(test_user_id) }
     it { should eq 'ok' }
   end
+
+  describe '#activities' do
+    let(:test_user_id) { 'TEST-USER-ID' }
+    let(:params) { { order: 'ace' } }
+    before { expect(client).to receive(:get).with("users/#{test_user_id}/activities", params).and_return('ok') }
+    subject { described_class.new(client).activities(test_user_id, params) }
+    it { should eq 'ok' }
+  end
 end
