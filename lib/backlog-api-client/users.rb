@@ -10,6 +10,10 @@ module BacklogApiClient
       def list
         @client.get(RESOURCE_NAME)
       end
+
+      def information(user_id)
+        @client.get("#{RESOURCE_NAME}/#{user_id}")
+      end
     end
   end
 end
