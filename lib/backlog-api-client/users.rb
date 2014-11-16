@@ -18,6 +18,10 @@ module BacklogApiClient
       def create(request)
         @client.post(RESOURCE_NAME, request)
       end
+
+      def delete(user_id)
+        @client.delete("#{RESOURCE_NAME}/#{user_id}")
+      end
     end
   end
 end
