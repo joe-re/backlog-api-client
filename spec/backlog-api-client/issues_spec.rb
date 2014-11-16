@@ -23,4 +23,12 @@ describe BacklogApiClient::Client::Issues do
     subject { described_class.new(client).create(request) }
     it { should eq 'ok' }
   end
+
+  describe '#update' do
+    let(:test_issue_id) { 'TEST-ISSUE-ID' }
+    let(:request) { 'request' }
+    before { expect(client).to receive(:patch).with("issues/#{test_issue_id}", request).and_return('ok') }
+    subject { described_class.new(client).update(test_issue_id, request) }
+    it { should eq 'ok' }
+  end
 end

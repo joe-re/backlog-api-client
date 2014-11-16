@@ -18,6 +18,10 @@ module BacklogApiClient
       def create(request)
         @client.post(RESOURCE_NAME, request)
       end
+
+      def update(issue_id_or_key, request)
+        @client.patch("#{RESOURCE_NAME}/#{issue_id_or_key}", request)
+      end
     end
   end
 end
