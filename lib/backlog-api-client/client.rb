@@ -15,27 +15,27 @@ module BacklogApiClient
       @http_cli.get "#{resource_path}#{to_request_params(params)}"
     end
 
-    def post(resource_path, request_body = {})
+    def post(resource_path, request = {})
       @http_cli.post do |req|
         req.url "#{resource_path}#{to_request_params(@api_key)}"
-        req.headers['Content-Type'] = 'application/json'
-        req.body = request_body.to_json
+        req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        req.body = build_request_body(request)
       end
     end
 
-    def patch(resource_path, request_body = {})
+    def patch(resource_path, request = {})
       @http_cli.patch do |req|
         req.url "#{resource_path}#{to_request_params(@api_key)}"
-        req.headers['Content-Type'] = 'application/json'
-        req.body = request_body.to_json
+        req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        req.body = build_request_body(request)
       end
     end
 
-    def put(resource_path, request_body = {})
+    def put(resource_path, request = {})
       @http_cli.put do |req|
         req.url "#{resource_path}#{to_request_params(@api_key)}"
-        req.headers['Content-Type'] = 'application/json'
-        req.body = request_body.to_json
+        req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        req.body = build_request_body(request)
       end
     end
 
@@ -62,6 +62,13 @@ module BacklogApiClient
     end
 
     private
+
+    def build_request_body(request_hash)
+      request_hash.each_with_object('') do |(k, v), body|
+        body << '&' unless body.empty?
+        body << "#{k}=#{v}"
+      end
+    end
 
     def to_request_params(hash)
       hash.each_with_object('') do |(k, v), request_params|
