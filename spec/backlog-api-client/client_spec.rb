@@ -15,11 +15,42 @@ describe BacklogApiClient::Client do
   end
 
   describe '#post' do
-    # ToDo: write test
+    let(:params) { { param1: 'test-param1', param2: 'test-param2' } }
+    let(:resource_path) { 'test/resource' }
+    before do
+      request_header = { 'Content-Type' => '' }
+      request = double('request', url: 'test-url', headers: request_header)
+      expect(request).to receive(:body=).with('param1=test-param1&param2=test-param2')
+      expect(http_cli).to receive(:post).and_yield(request).and_return('ok')
+    end
+    subject { described_class.new(space_name, api_key).post(resource_path, params) }
+    it { should eq 'ok' }
   end
 
   describe '#patch' do
-    # ToDo: write test
+    let(:params) { { param1: 'test-param1', param2: 'test-param2' } }
+    let(:resource_path) { 'test/resource' }
+    before do
+      request_header = { 'Content-Type' => '' }
+      request = double('request', url: 'test-url', headers: request_header)
+      expect(request).to receive(:body=).with('param1=test-param1&param2=test-param2')
+      expect(http_cli).to receive(:patch).and_yield(request).and_return('ok')
+    end
+    subject { described_class.new(space_name, api_key).patch(resource_path, params) }
+    it { should eq 'ok' }
+  end
+
+  describe '#put' do
+    let(:params) { { param1: 'test-param1', param2: 'test-param2' } }
+    let(:resource_path) { 'test/resource' }
+    before do
+      request_header = { 'Content-Type' => '' }
+      request = double('request', url: 'test-url', headers: request_header)
+      expect(request).to receive(:body=).with('param1=test-param1&param2=test-param2')
+      expect(http_cli).to receive(:put).and_yield(request).and_return('ok')
+    end
+    subject { described_class.new(space_name, api_key).put(resource_path, params) }
+    it { should eq 'ok' }
   end
 
   describe '#delete' do
