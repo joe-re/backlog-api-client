@@ -77,13 +77,14 @@ cli.issues.update('TST-3', {
 - Update Issue(/api/v2/issues/:issueIdOrKey)
 - Delete Issue(/api/v2/issues/:issueIdOrKey)
 
-### How to use not support API
-You can use not support API by using BacklogApiClient::Client has methods.
+### How to use unsupported API
+You can use unsupported API by using BacklogApiClient::Client has methods.
 
 - \#get
 - \#post
 - \#patch
 - \#put
+- \#delete
 - \#file_upload
 
 But I would be glad if you send Pull Request without to use these methods.
@@ -110,8 +111,3 @@ cli.post('/api/v2/wikis', {
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
-
-
-## Release
-- 0.0.1
-    - first release
