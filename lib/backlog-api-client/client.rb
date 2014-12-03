@@ -62,6 +62,10 @@ module BacklogApiClient
       BacklogApiClient::Client::Users.new(self)
     end
 
+    def projects
+      BacklogApiClient::Client::Projects.new(self)
+    end
+
     private
 
     def build_request_body(request_hash)
