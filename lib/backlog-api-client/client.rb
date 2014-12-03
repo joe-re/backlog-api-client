@@ -7,7 +7,8 @@ module BacklogApiClient
     def initialize(space_name, api_key)
       @space_name = space_name
       @api_key = { apiKey: api_key }
-      @http_cli = Faraday.new(url: "https://#{space_name}#{API_PATH}")
+      backlog_url = (space_name =~ %r{^https?://.*} ? space_name : "https://#{space_name}")
+      @http_cli = Faraday.new(url: "#{backlog_url}#{API_PATH}")
     end
 
     def get(resource_path, params = {})
